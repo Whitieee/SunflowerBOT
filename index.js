@@ -21,8 +21,8 @@ for (const file of commandFiles) {
 }
 client.on('message', message => {
   if (!message.content.startsWith(process.env.PREFIX) || message.author.bot) return;
-  //if (config.blacklistedChannels.includes(message.channel.id) && !config.devs.includes(message.author.id)) 
-  //  return message.reply(`<:SW_pandapolicia:767092860800991252> **»** **Você não tem permissão para usar este comando aqui!**`)
+  if (config.blacklistedChannels.includes(message.channel.id) && !config.devs.includes(message.author.id)) 
+    return message.reply(`<:SW_pandapolicia:767092860800991252> **»** **Você não tem permissão para usar este comando aqui!**`)
   if (!message.content.startsWith(process.env.PREFIX.toLowerCase())) return;
   if (message.content.startsWith(`<@!${client.user.id}>`) || message.content.startsWith(`<@${client.user.id}>`)) return;
   const args = message.content
@@ -44,7 +44,7 @@ client.on('message', message => {
     message.guild.channels.cache.get('826152829412311081').send(embed);
   } catch (err) {
     console.error('Erro:' + err);
-    const embed = new MessageEmbed()
+    const embed = new Discord.MessageEmbed()
       .setTitle('OOF')
       .setDescription('```' + err.stack + '```')
       .setColor('#c62b1d')
@@ -55,12 +55,12 @@ client.on('message', message => {
 
 client.on("ready", () => {
   const activities = [
-      `Utilize ${process.env.PREFIX}help para obter ajuda`,
-      `O Servidor crescer rapidamente!`,
-      `O Whiteee e He1Korno me Progamar!`,
-      `Os Usuários se divertindo no chat!`
-    ];
-    i = 0;
+    `Utilize ${process.env.PREFIX}help para obter ajuda`,
+    `O Servidor crescer rapidamente!`,
+    `O Whiteee e He1Korno me Progamar!`,
+    `Os Usuários se divertindo no chat!`
+  ];
+  i = 0;
   setInterval(() => client.user.setActivity(`${activities[Math.floor(Math.random() * activities.length)]}`, {
     type: "WATCHING"
   }), 1000 * 60);
