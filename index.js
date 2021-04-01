@@ -17,12 +17,12 @@ const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('
 for (const file of commandFiles) {
   const command = require(`./commands/${file}`);
   client.commands.set(command.name, command);
-  console.log(`O arquivo ${command} foi carregado corretamente!`)
+  console.log(`O arquivo ${command.name} foi carregado corretamente!`)
 }
 client.on('message', message => {
   if (!message.content.startsWith(process.env.PREFIX) || message.author.bot) return;
-  if (config.blacklistedChannels.includes(message.channel.id) && !config.devs.includes(message.author.id)) 
-    return message.reply(`<:SW_pandapolicia:767092860800991252> **»** **Você não tem permissão para usar este comando aqui!**`)
+  //if (config.blacklistedChannels.includes(message.channel.id) && !config.devs.includes(message.author.id)) 
+  //  return message.reply(`<:SW_pandapolicia:767092860800991252> **»** **Você não tem permissão para usar este comando aqui!**`)
   if (!message.content.startsWith(process.env.PREFIX.toLowerCase())) return;
   if (!message.content.startsWith(`<@!${client.user.id}>`) || !message.content.startsWith(`<@${client.user.id}>`)) return;
   const args = message.content
