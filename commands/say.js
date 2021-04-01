@@ -13,7 +13,7 @@ module.exports = {
   alisases: ['falar'],
   description: 'Faz o bot falar qualquer coisa!',
 
-  async execute(message, args, client) {
+  async execute(client, message, args) {
     if (!message.member.hasPermission("BAN_MEMBERS"))
       return message.reply(`<:SW_pandapolicia:767092860800991252> **»** **Você não tem permissão para usar este comando!**`)
     const sayMessage = args.join(' ');

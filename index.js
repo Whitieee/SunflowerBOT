@@ -20,7 +20,7 @@ for (const file of commandFiles) {
   console.log(`O arquivo ${command} foi carregado corretamente!`)
 }
 client.on('message', message => {
-  if (!message.content.startsWith(prefix) || message.author.bot) return;
+  if (!message.content.startsWith(process.env.PREFIX) || message.author.bot) return;
   if (config.blacklistedChannels.includes(message.channel.id) && !config.devs.includes(message.author.id)) 
     return message.reply(`<:SW_pandapolicia:767092860800991252> **»** **Você não tem permissão para usar este comando aqui!**`)
   if (!message.content.startsWith(process.env.PREFIX.toLowerCase())) return;
