@@ -34,11 +34,13 @@ client.on('message', message => {
   if (!command) return;
   try {
     command.execute(client, message, args);
+    //log de comando
     const embed = new Discord.MessageEmbed()
       .setTitle("OwO")
       .setColor("fff3f")
       .setDescription("dicc")
       .addField("<:certoooooooooo:767092932959797331>  **» Quem Utilizou:**", message.author.tag)
+      .addField(`no canal:`,`${message.channel.name}(${message.channel.id})`)
       .addField("<:staff:825830974088019968> » Mensagem Completa", `${message.content}`)
       .setFooter(new Date(message.createdTimestamp));
     message.guild.channels.cache.get('826152829412311081').send(embed);
@@ -60,14 +62,13 @@ client.on("ready", () => {
     `O Whiteee e He1Korno me Progamar!`,
     `Os Usuários se divertindo no chat!`
   ];
-  i = 0;
   setInterval(() => client.user.setActivity(`${activities[Math.floor(Math.random() * activities.length)]}`, {
     type: "WATCHING"
   }), 1000 * 60);
   client.user
     .setStatus("dnd")
     .catch(console.error);
-  console.log("Estou Online!")
+  console.log(`${client.user.tag} está online!`)
 });
 
 client.login(process.env.TOKEN);
