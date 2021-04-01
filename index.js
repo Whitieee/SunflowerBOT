@@ -33,7 +33,7 @@ client.on('message', message => {
     client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
   if (!command) return;
   try {
-    commandFile.run(client, message, args);
+    command.execute(client, message, args);
     const embed = new Discord.MessageEmbed()
       .setTitle("OwO")
       .setColor("fff3f")
