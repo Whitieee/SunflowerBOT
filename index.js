@@ -24,7 +24,7 @@ client.on('message', message => {
   //if (config.blacklistedChannels.includes(message.channel.id) && !config.devs.includes(message.author.id)) 
   //  return message.reply(`<:SW_pandapolicia:767092860800991252> **»** **Você não tem permissão para usar este comando aqui!**`)
   if (!message.content.startsWith(process.env.PREFIX.toLowerCase())) return;
-  if (!message.content.startsWith(`<@!${client.user.id}>`) || !message.content.startsWith(`<@${client.user.id}>`)) return;
+  if (message.content.startsWith(`<@!${client.user.id}>`) || message.content.startsWith(`<@${client.user.id}>`)) return;
   const args = message.content
     .slice(process.env.PREFIX.length)
     .split(/ +/);
