@@ -3,7 +3,7 @@ const prefix = process.env.PREFIX;
 module.exports = {
     name: 'help',
     description: 'Mostra informações de um comando ou então mostra todos os comandos.',
-    aliases: ['comandos'],
+    aliases: ['comandos','ajuda'],
     execute(client, message, args) {
         const data = [];
         const { commands } = client;
