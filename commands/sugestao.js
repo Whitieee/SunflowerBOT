@@ -7,7 +7,6 @@ module.exports = {
   async execute(client, message, args) {
     if (message.channel.id == "683525075709853748") return message.reply(`<:SW_pandapolicia:767092860800991252> **»** **Você não tem permissão para usar este comando no bate-papo**`)
     const content = args.join(" ");
-
     if (args.length < 1) {
       return message.channel.send(`${message.author.username}, escreva a sugestão após o comando`)
     } else if (content.length > 1000) {
@@ -24,9 +23,7 @@ module.exports = {
         .setTimestamp()
       );
       await message.channel.send(`${message.author} a mensagem foi enviada com sucesso!`);
-
       const emojis = ["✔️", "❎"];
-
       for (const i in emojis) {
         await msg.react(emojis[i])
       }
