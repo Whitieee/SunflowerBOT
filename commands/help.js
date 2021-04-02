@@ -10,7 +10,7 @@ module.exports = {
 
         if (!args.length) {
             data.push('Aqui está uma lista de todos os comandos disponiveis:');
-            data.push(commands.map(command => command.name).join(', '));
+            data.push(`**${commands.map(command => command.name).join(', ')}**`);
             data.push(`\nUse  \`${prefix}help [Nome do comando]\` para saber oque tal comando faz!`);
 
             return message.author.send(data, { split: true })
