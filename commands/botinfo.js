@@ -1,5 +1,5 @@
 const os = require('os')
-const { EmbedBuilder } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 module.exports = {
     name: "botinfo",
     aliases: [],
@@ -11,7 +11,7 @@ module.exports = {
         totalSeconds %= 3600;
         const minutes = Math.floor(totalSeconds / 60);
         const seconds = Math.floor(totalSeconds % 60);
-        const embed = new EmbedBuilder()
+        const embed = new MessageEmbed()
             .addField('Criadores','He1korno#9932 e Whiteee#8393',true)
             .addField('Feito em','JavaScript e Node.js',true)
             .addField('Usuarios',`${client.users.cache.size}`)
