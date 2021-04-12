@@ -7,10 +7,10 @@ app.get("/", (request, response) => {
   console.log(`Ping recebido às ${ping.getUTCHours()}:${ping.getUTCMinutes()}:${ping.getUTCSeconds()}`);
   response.sendStatus(200);
 });
-app.listen(process.env.PORT); // Recebe solicitações que o deixa online
+app.listen(process.env.PORT);
 
-const Discord = require("discord.js"); //Conexão com a livraria Discord.js
-const client = new Discord.Client(); //Criação de um novo Client
+const Discord = require("discord.js"); 
+const client = new Discord.Client(); 
 const config = require("./config.json");
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
@@ -20,6 +20,7 @@ for (const file of commandFiles) {
   console.log(`O arquivo ${command.name} foi carregado corretamente!`)
 }
 client.on('message', message => {
+  if (message.channel.type === 'dm') return;
   if (!message.content.startsWith(process.env.PREFIX) || message.author.bot) return;
   const role = message.member.roles.cache.some( r => config.rolesWithPerm.includes(r.id))
   if (config.blacklistedChannels.includes(message.channel.id) && !role) 
