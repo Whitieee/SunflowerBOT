@@ -20,6 +20,7 @@ module.exports = {
             .addField('Prefixo',`${process.env.PREFIX}`,true)
             .addField('Criado em',`client.user.createdAt`)
             .setFooter(`©️ ${client.user.username}`)
+            message.reply(embed)
 
     }
 }
