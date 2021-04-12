@@ -18,7 +18,7 @@ module.exports = {
             .addField('Comandos',`${client.commands.size}`)
             .addField('Ligado a',`${days}:${hours}:${minutes}:${seconds}`,true)
             .addField('Prefixo',`${process.env.PREFIX}`,true)
-            .addField('Criado em',`client.user.createdAt`)
+            .addField('Criado em',`${client.user.createdAt}`)
             .setFooter(`©️ ${client.user.username}`)
             message.reply(embed)
 
