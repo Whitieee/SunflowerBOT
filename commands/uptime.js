@@ -11,6 +11,6 @@ module.exports = {
         totalSeconds %= 3600;
         const minutes = Math.floor(totalSeconds / 60);
         const seconds = Math.floor(totalSeconds % 60);
-        message.channel.send(`:rage:|O bot está online a ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos!`);
+        message.channel.send(`<a:wampus_boost:827927714354561054>・**O Sunflower's BOT está online a** ${days} **dias**, ${hours} **horas**, ${minutes} **minutos e** ${seconds} **segundos!** `);
     },
 };

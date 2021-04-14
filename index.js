@@ -60,7 +60,7 @@ client.on('message', message => {
 client.on("ready", () => {
   const activities = [
     `Utilize ${process.env.PREFIX}help para obter ajuda`,
-    `O Servidor crescer rapidamente!`,
+    `O Servidor crescer com muito amor e carinho !`,
     `O Whiteee e He1Korno me Progamar!`,
     `Os Usuários se divertindo no chat!`
   ];

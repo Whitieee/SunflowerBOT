@@ -46,7 +46,7 @@ module.exports = {
       .setImage(rand)
       .setTimestamp()
       .setThumbnail(avatar)
-      .setFooter('h!kiss <usuario>')
+      .setFooter('s!kiss <usuario>')
       .setAuthor(message.author.tag, avatar);
     await message.channel.send(embed);
   }
