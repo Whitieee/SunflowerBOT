@@ -38,11 +38,9 @@ client.on('message', message => {
     command.execute(client, message, args);
     //log de comando
     const embed = new Discord.MessageEmbed()
-      .setTitle("OwO")
       .setColor("fff3f")
-      .setDescription("dicc")
       .addField("<:certoooooooooo:767092932959797331>  **» Quem Utilizou:**", message.author.tag)
-      .addField(`no canal:`,`${message.channel.name}(${message.channel.id})`)
+      .addField(`<:SW_pandapolicia:767092860800991252>  **» Canal**:`,`${message.channel.name}(${message.channel.id})`)
       .addField("<:staff:825830974088019968> » Mensagem Completa", `${message.content}`)
       .setFooter(new Date(message.createdTimestamp));
     message.guild.channels.cache.get('826152829412311081').send(embed);
