@@ -1,9 +1,12 @@
+const config = require('../config.json');
+const Discord = require("discord.js");
 module.exports = {
     name: 'message',
     once: false,
-    execute(client) {
+    async execute(client, message) {
         if (message.channel.type === 'dm') return;
         if (!message.content.startsWith(process.env.PREFIX) || message.author.bot) return;
+        // system of roles with perm to send message in blacklisted channels
         const role = message.member.roles.cache.some(r => config.rolesWithPerm.includes(r.id))
         if (config.blacklistedChannels.includes(message.channel.id) && !role)
             return message.reply(`<:SW_pandapolicia:767092860800991252> **»** **Você não tem permissão para usar este comando aqui!**`)
@@ -25,7 +28,7 @@ module.exports = {
                 .addField(`<:SW_pandapolicia:767092860800991252>  **» Canal**:`, `${message.channel.name}(${message.channel.id})`)
                 .addField("<:staff:825830974088019968> » Mensagem Completa", `${message.content}`)
                 .setFooter(new Date(message.createdTimestamp));
-            message.guild.channels.cache.get('826152829412311081').send(embed);
+            //message.guild.channels.cache.get('826152829412311081').send(embed);
         } catch (err) {
             console.error('Erro:' + err);
             const embed = new Discord.MessageEmbed()
