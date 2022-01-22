@@ -8,8 +8,17 @@ module.exports = {
   async execute(client, message, args) {
     if (!message.member.hasPermission("MANAGE_MESSAGES"))
       return message.reply(`<:SW_pandapolicia:767092860800991252> **»** **Você não tem permissão para usar este comando!**`)
-    const sayMessage = args.join(' ');
-    await message.delete()
-    await message.channel.send(sayMessage);
+    if (args[0] === "json") {
+      args.shift();
+
+      const embed = new Discord.MessageEmbed(JSON.parse(args.join(" ")));
+      await message.delete()
+      await message.channel.send(embed)
+
+    } else {
+      const sayMessage = args.join(' ');
+      await message.delete()
+      await message.channel.send(sayMessage);
+    }
   }
 };
