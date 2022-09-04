@@ -4,7 +4,7 @@ module.exports = {
     name: "botinfo",
     aliases: [],
     description: "Mostra informações sobre mim!",
-    execute(client, message, args) {
+    async execute(client, message, args) {
         let totalSeconds = (client.uptime / 1000);
         const days = Math.floor(totalSeconds / 86400);
         const hours = Math.floor(totalSeconds / 3600);
@@ -23,7 +23,7 @@ module.exports = {
             .addField('<a:nice:827926205863821312> » Prefixo:',`${process.env.PREFIX}`,true)
             .addField('<a:wampus_boost:827927714354561054> » **Criado em:**',`9 de Janeiro de 2020 ás 15:35.`,true)
             .setFooter(`Copyright ©️ 2020 ${client.user.username}. All Rights Reserved.`)
-            message.reply(embed)
+            await message.reply(embed)
 
     }
 }

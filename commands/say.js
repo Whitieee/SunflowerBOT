@@ -10,7 +10,6 @@ module.exports = {
       return message.reply(`<:SW_pandapolicia:767092860800991252> **»** **Você não tem permissão para usar este comando!**`)
     if (args[0] === "json") {
       args.shift();
-
       const embed = new Discord.MessageEmbed(JSON.parse(args.join(" ")));
       await message.delete()
       await message.channel.send(embed)

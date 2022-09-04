@@ -1,6 +1,6 @@
 const fs = require('fs');
 const app = require('./utils/Site')
-console.log(app);
+//console.log(app);
 require('dotenv').config();
 const {
 	Client,
@@ -11,6 +11,7 @@ client.commands = new Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
+    console.log(command)
 	client.commands.set(command.name, command);
 	console.log(`O arquivo ${command.name} foi carregado corretamente!`)
 }

@@ -4,7 +4,7 @@ module.exports = {
     async execute(client) {
         const activities = [
             `Utilize ${process.env.PREFIX}help para obter ajuda`,
-            `O Servidor crescer com muito amor e carinho !`,
+            `O Servidor cresce como muito amor e carinho !`,
             `O Whiteee e He1Korno me Progamar!`,
             `Os Usuários se divertindo no chat!`
         ];

@@ -1,4 +1,4 @@
-const config = require('../config.json')
+const config = require('../config')
 
 module.exports = {
 	name: 'eval',
@@ -7,7 +7,7 @@ module.exports = {
 	async execute(client, message, args) {
 		//360909768908472320 436963547864629248
 		if (!config.devs.includes(message.author.id))
-			return message.reply(`<:SW_pandapolicia:767092860800991252> **»** Você não tem permissão para usar este comando.`)
+			return await message.reply(`<:SW_pandapolicia:767092860800991252> **»** Você não tem permissão para usar este comando.`)
 
 		const {
 			MessageEmbed
