@@ -5,7 +5,7 @@ module.exports = {
         const activities = [
             `Utilize ${process.env.PREFIX}help para obter ajuda`,
             `O Servidor cresce como muito amor e carinho !`,
-            `O Whiteee e He1Korno me Progamar!`,
+            `O Whiteee e Heikey me Progamar!`,
             `Os Usuários se divertindo no chat!`
         ];
         setInterval(() => client.user.setActivity(`${activities[Math.floor(Math.random() * activities.length)]}`, {

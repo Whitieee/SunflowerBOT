@@ -7,7 +7,7 @@ module.exports = {
 
   async execute(client, message, args) {
     if (!message.member.hasPermission("MANAGE_MESSAGES"))
-      return message.reply(`<:SW_pandapolicia:767092860800991252> **»** **Você não tem permissão para usar este comando!**`)
+      return message.reply(`**»** **Você não tem permissão para usar este comando!**`)
     if (args[0] === "json") {
       args.shift();
       const embed = new Discord.MessageEmbed(JSON.parse(args.join(" ")));

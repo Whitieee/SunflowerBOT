@@ -5,9 +5,8 @@ module.exports = {
 	aliases: ['e'],
 	description: 'Comando que apenas DEV\'s podem usar!',
 	async execute(client, message, args) {
-		//360909768908472320 436963547864629248
 		if (!config.devs.includes(message.author.id))
-			return await message.reply(`<:SW_pandapolicia:767092860800991252> **»** Você não tem permissão para usar este comando.`)
+			return await message.reply(`**»** Você não tem permissão para usar este comando.`)
 
 		const {
 			MessageEmbed
