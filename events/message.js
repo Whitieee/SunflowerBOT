@@ -4,17 +4,14 @@ module.exports = {
     name: 'message',
     once: false,
     async execute(client, message) {
-			console.log(message);
         if (message.channel.type === 'dm') return;
         if (!message.content.startsWith(process.env.PREFIX) || message.author.bot) return;
-			console.log("start with prefix:"+message.content);
         // system of roles with perm to send message in blacklisted channels
         const role = message.member.roles.cache.some(r => config.rolesWithPerm.includes(r.id))
         if (config.blacklistedChannels.includes(message.channel.id) && !role)
             return message.reply(`**»** **Você não tem permissão para usar este comando aqui!**`)
         if (!message.content.startsWith(process.env.PREFIX.toLowerCase())) return;
         if (message.content.startsWith(`<@!${client.user.id}>`) || message.content.startsWith(`<@${client.user.id}>`)) return;
-			console.log("deveria funcionar");
         const args = message.content
             .slice(process.env.PREFIX.length)
             .split(/ +/);
