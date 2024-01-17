@@ -1,10 +1,10 @@
-const Discord = require('discord.js');
-module.exports = {
+import {EmbedBuilder} from 'discord.js';
+import Command from '../utils/command'
+export default {
   name: 'kiss',
   aliases: ['beijo'],
   description: 'Comando para você beixar seu BFF!',
-  async execute(client, message, args) {
-
+	run: async (client, message, args) => {
     var list = [
       'https://imgur.com/iclUiUN.gif',
       'https://imgur.com/lYQt9rx.gif',
@@ -33,21 +33,14 @@ module.exports = {
       return message.reply('lembre-se de mencionar um usuário válido para beijar!');
     }
     if (user == message.author) return message.reply('Você não pode se beijar!')
-    /*
-    message.channel.send(`${message.author.username} **acaba de beijar ** ${user.username}! :heart:`, {files: [rand]});
-    */
-    let avatar = message.author.displayAvatarURL({
-      format: 'png'
-    });
-    const embed = new Discord.MessageEmbed()
+    const embed = new EmbedBuilder()
       .setTitle('Acabaram de se beijar, apaixonados!')
       .setColor('#9d00ff')
       .setDescription(`${message.author} acaba de beijar ${user}`)
       .setImage(rand)
       .setTimestamp()
-      .setThumbnail(avatar)
-      .setFooter('!kiss <usuario>')
-      .setAuthor(message.author.tag, avatar);
-    await message.channel.send(embed);
-  }
-}
+    await message.reply({
+			embeds:[embed]
+		});
+	},
+} as Command

@@ -1,23 +1,20 @@
+import {ChannelType} from 'discord.js';
+import Command from '../utils/command'
 const prefix = process.env.PREFIX;
-
-module.exports = {
+export default {
     name: 'help',
     description: 'Mostra informações de um comando ou então mostra todos os comandos.',
     aliases: ['comandos', 'ajuda'],
-    execute(client, message, args) {
+		run: async (client, message, args) => {
         const data = [];
-        const {
-            commands
-        } = client;
+				let commands = client.commands;
         if (!args.length) {
             data.push('Aqui está uma lista de todos os comandos disponiveis:');
             data.push(`**${commands.map(command => command.name).join(', ')}**`);
             data.push(`\nUse  \`${prefix}help [Nome do comando]\` para saber oque tal comando faz!`);
-            return message.author.send(data, {
-                    split: true
-                })
+            return message.author.send(data.join(''))
                 .then(() => {
-                    if (message.channel.type === 'dm') return;
+                    if (message.channel.type === ChannelType.DM) return;
                     message.reply('Eu mandei na sua DM uma mensagem de ajuda!');
                 })
                 .catch(error => {
@@ -31,9 +28,6 @@ module.exports = {
         data.push(`**Nome:** ${command.name}`);
         if (command.aliases) data.push(`**pode ser usado como:** ${command.aliases.join(', ')}`);
         if (command.description) data.push(`**Descrição:** ${command.description}`);
-        if (command.usage) data.push(`**Uso:** ${prefix}${command.name} ${command.usage}`);
-        message.channel.send(data, {
-            split: true
-        });
-    },
-};
+        await message.channel.send(data.join(''))
+		},
+} as Command;
