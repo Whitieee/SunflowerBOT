@@ -1,15 +1,27 @@
+import {duration} from 'moment';
 import Command from '../utils/command'
+import {SlashCommandBuilder} from 'discord.js';
 export default {
-    name: 'uptime',
+	data: new SlashCommandBuilder()
+						.setDescription('mostra a quanto tempo o bot está online')
+						.setName('uptime'),
     aliases: ['tempo'],
-    description: 'Mostra o uptime do bot!',
-		run: async(client, message, args) => {
-        let totalSeconds = (client.uptime! / 1000);
-        const days = Math.floor(totalSeconds / 86400);
-        const hours = Math.floor(totalSeconds / 3600);
-        totalSeconds %= 3600;
-        const minutes = Math.floor(totalSeconds / 60);
-        const seconds = Math.floor(totalSeconds % 60);
+		run: async(client, message) => {
+        const totalSeconds = duration(client.uptime);
+        const days = totalSeconds.days();
+        const hours = totalSeconds.hours();
+        const minutes = totalSeconds.minutes();
+        const seconds = totalSeconds.seconds();
         message.channel.send(`**O ${client.user!.tag} está online a** ${days} **dias**, ${hours} **horas**, ${minutes} **minutos e** ${seconds} **segundos!** `);
+		},
+		slash_run:async (interaction) => {
+			if(!interaction.isChatInputCommand()) return;	
+			const client = interaction.client;
+        const totalSeconds = duration(client.uptime);
+        const days = totalSeconds.days();
+        const hours = totalSeconds.hours();
+        const minutes = totalSeconds.minutes();
+        const seconds = totalSeconds.seconds();
+        interaction.reply(`**O ${client.user!.tag} está online a** ${days} **dias**, ${hours} **horas**, ${minutes} **minutos e** ${seconds} **segundos!** `);
 		},
 } as Command;

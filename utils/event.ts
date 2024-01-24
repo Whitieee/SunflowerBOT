@@ -1,7 +1,7 @@
 class DiscordEvent {
 	name?:string
 	once?:boolean
-	execute?:any 
+	execute?:(...args:unknown[]) => void; 
 }
 
 export default DiscordEvent

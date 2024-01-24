@@ -1,24 +1,23 @@
-import {EmbedBuilder, PermissionFlagsBits} from 'discord.js';
+import {PermissionFlagsBits, SlashCommandBuilder} from 'discord.js';
 import Command from '../utils/command'
 export default {
-  name: 'say',
+	data: new SlashCommandBuilder()
+						.setName('say')
+						.setDescription('Comando exclusivo para a staff')
+						.addStringOption(option => option.setName('message').setRequired(true).setDescription('a mensagem a ser dita')),
   aliases: ['falar'],
-  description: 'Faz o bot falar qualquer coisa!',
 	run: async (_client, message, args) => {
     if (!message.member?.permissions.has(PermissionFlagsBits.ManageMessages))
       return message.reply(`**»** **Você não tem permissão para usar este comando!**`)
-    if (args[0] === "json") {
-      args.shift();
-      const embed = new EmbedBuilder(JSON.parse(args.join(" ")));
-      await message.delete()
-      await message.channel.send({
-				embeds:[embed]
-			})
-
-    } else {
-      const sayMessage = args.join(' ');
-      await message.delete()
-      await message.channel.send(sayMessage);
-    }
+		const sayMessage = args.join(' ');
+		await message.delete()
+		await message.channel.send(sayMessage);
+	},
+	slash_run: async (interaction) => {
+		if(!interaction.isChatInputCommand()) return;
+    if (!interaction.memberPermissions?.has(PermissionFlagsBits.ManageMessages))
+      return interaction.reply(`**»** **Você não tem permissão para usar este comando!**`)
+		const sayMessage = interaction.options.getString('message', true);
+		await interaction.channel?.send(sayMessage);
 	},
 } as Command;

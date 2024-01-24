@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {ChannelType, EmbedBuilder, Message} from "discord.js";
 import Client from "../utils/client";
 import DiscordEvent from "../utils/event";
@@ -9,7 +10,7 @@ export default {
 	execute: async (client:Client,message:Message) => {
 		if(message.channel.type === ChannelType.DM) return;
 		if(!message.content.startsWith(process.env.PREFIX!) || message.author.bot) return;
-		let role = message.member?.roles.cache.some(r => config.rolesWithPerm.includes(r.id));
+		const role = message.member?.roles.cache.some(r => config.rolesWithPerm.includes(r.id));
 		if(!config.whitelistedChannels.includes(message.channel.id) && !role) {
 			return message.reply(`**»** **Você não tem permissão para usar este comando aqui!**`)
 		}
