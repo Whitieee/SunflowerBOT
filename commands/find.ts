@@ -5,7 +5,9 @@ export default {
   data: new SlashCommandBuilder()
     .setName("find")
     .setDescription("Comando exclusivo para a staff")
-    .addStringOption((option) => option.setName("query").setRequired(true).setDescription('nome do moço')),
+    .addStringOption((option) =>
+      option.setName("query").setRequired(true).setDescription("nome do moço")
+    ),
   aliases: [],
   run: async (_client, message, args) => {
     const author = message.member;
@@ -22,8 +24,10 @@ export default {
     if (!interaction.isChatInputCommand()) return;
     const author = interaction.memberPermissions;
     if (!author?.has(PermissionsBitField.Flags.ManageMessages))
-      return await interaction.reply("Você não tem permissão para usar esse comando");
-			const args = interaction.options.getString('query', true).split(' ');
+      return await interaction.reply(
+        "Você não tem permissão para usar esse comando"
+      );
+    const args = interaction.options.getString("query", true).split(" ");
     const user_find = interaction.guild?.members.cache.find((m) =>
       m.nickname?.includes(args[0])
     );

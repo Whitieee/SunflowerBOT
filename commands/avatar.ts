@@ -6,7 +6,9 @@ export default {
   data: new SlashCommandBuilder()
     .setName("avatar")
     .setDescription("Mostra o avatar do usuario!")
-    .addUserOption((option) => option.setName("usuario").setDescription('quem você quer beijar')),
+    .addUserOption((option) =>
+      option.setName("usuario").setDescription("quem você quer beijar")
+    ),
   run: async (client: Client, message: Message, args: string[]) => {
     const user =
       message.mentions.users.first() ||

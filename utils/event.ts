@@ -1,7 +1,7 @@
 class DiscordEvent {
-	name?:string
-	once?:boolean
-	execute?:(...args:unknown[]) => void; 
+  name?: string;
+  once?: boolean;
+  execute?: (...args: unknown[]) => void;
 }
 
-export default DiscordEvent
+export default DiscordEvent;
