@@ -21,7 +21,7 @@ export default {
       })
       .addFields({
         name: "» **Feito em:**",
-        value: "JavaScript e Node.js",
+        value: "TypeScript e Node.js",
         inline: true,
       })
       .addFields({
@@ -46,7 +46,7 @@ export default {
       })
       .addFields({
         name: "» **Criado em:**",
-        value: new Date().getFullYear().toString(),
+        value: new Date().toLocaleDateString(),
         inline: true,
       })
       .setFooter({
@@ -75,7 +75,7 @@ export default {
       })
       .addFields({
         name: "» **Feito em:**",
-        value: "JavaScript e Node.js",
+        value: "TypeScript e Node.js",
         inline: true,
       })
       .addFields({
@@ -100,12 +100,12 @@ export default {
       })
       .addFields({
         name: "» **Criado em:**",
-        value: new Date().getFullYear().toString(),
+        value: new Date().toLocaleDateString(),
         inline: true,
       })
       .setFooter({
         text:
-          "Copyright ©️ 2024" +
+          "Copyright ©️ 2024 " +
           client.user?.username +
           ". All Rights Reserved.",
       });
