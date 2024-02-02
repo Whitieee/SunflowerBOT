@@ -1,106 +1,54 @@
 import { EmbedBuilder, SlashCommandBuilder } from "discord.js";
 import Command from "../utils/command";
 import Client from "../utils/client";
+import {duration} from "moment";
 export default {
   data: new SlashCommandBuilder()
     .setName("botinfo")
     .setDescription("Mostra informações sobre o bot"),
-  run: async (client, message) => {
-    let totalSeconds = client.uptime! / 1000;
-    const days = Math.floor(totalSeconds / 86400);
-    const hours = Math.floor(totalSeconds / 3600);
-    totalSeconds %= 3600;
-    const minutes = Math.floor(totalSeconds / 60);
-    const seconds = Math.floor(totalSeconds % 60);
-    const embed = new EmbedBuilder()
-      .setColor(`#00e1ff`)
-      .addFields({
-        name: "» Criadores:",
-        value: "[Heikey]() & [Whiteee]()",
-        inline: true,
-      })
-      .addFields({
-        name: "» **Feito em:**",
-        value: "TypeScript e Node.js",
-        inline: true,
-      })
-      .addFields({
-        name: "» Usuarios:",
-        value: `${client.users.cache.size}`,
-        inline: true,
-      })
-      .addFields({
-        name: "» Comandos:",
-        value: `${client.commands.size}`,
-        inline: true,
-      })
-      .addFields({
-        name: "» **Ligado:**",
-        value: `${days}:${hours}:${minutes}:${seconds}`,
-        inline: true,
-      })
-      .addFields({
-        name: "» Prefixo:",
-        value: `${process.env.PREFIX}`,
-        inline: true,
-      })
-      .addFields({
-        name: "» **Criado em:**",
-        value: new Date().toLocaleDateString(),
-        inline: true,
-      })
-      .setFooter({
-        text:
-          "Copyright ©️ 2024" +
-          client.user?.username +
-          ". All Rights Reserved.",
-      });
-    await message.reply({ embeds: [embed] });
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+  run: async (_client, _message) => {
+		return;
   },
   slash_run: async (interaction) => {
     if (!interaction.isChatInputCommand()) return;
     const client = interaction.client as Client;
-    let totalSeconds = client.uptime! / 1000;
-    const days = Math.floor(totalSeconds / 86400);
-    const hours = Math.floor(totalSeconds / 3600);
-    totalSeconds %= 3600;
-    const minutes = Math.floor(totalSeconds / 60);
-    const seconds = Math.floor(totalSeconds % 60);
+		const time = duration(client.uptime);
+    const days = time.days();
+    const hours = time.hours();
+    const minutes = time.minutes();
+    const seconds = time.seconds();
+		const color = Math.random() * 0xffffff;
     const embed = new EmbedBuilder()
-      .setColor(`#00e1ff`)
+      .setColor(Math.round(color))
       .addFields({
-        name: "» Criadores:",
-        value: "[Heikey]() & [Whiteee]()",
+        name: "<:777:1196155177724551178>» Criador:",
+        value: "[Heikey](https://github/Heikey) & [Whiteee](https://twitter.com/11nsight)",
         inline: true,
       })
       .addFields({
-        name: "» **Feito em:**",
+        name: "<:5_:1196154623514390621>» Feito em:",
         value: "TypeScript e Node.js",
         inline: true,
       })
       .addFields({
-        name: "» Usuarios:",
+        name: "<:88888:1196155629077794876>» Usuarios:",
         value: `${client.users.cache.size}`,
         inline: true,
       })
       .addFields({
-        name: "» Comandos:",
+        name: "<:66:1196154858504470669>» Comandos:",
         value: `${client.commands.size}`,
         inline: true,
       })
       .addFields({
-        name: "» **Ligado:**",
+        name: "<:44444:1196155484139442347>» **Ligado:**",
         value: `${days}:${hours}:${minutes}:${seconds}`,
         inline: true,
       })
       .addFields({
-        name: "» Prefixo:",
-        value: `${process.env.PREFIX}`,
-        inline: true,
-      })
-      .addFields({
-        name: "» **Criado em:**",
-        value: new Date().toLocaleDateString(),
+        name: "<:114:1196155359849615413>» Criado em:",
+        value: interaction.client.application.createdAt.toLocaleDateString(),
         inline: true,
       })
       .setFooter({
