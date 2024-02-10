@@ -11,7 +11,7 @@ export default {
     if (message.channel.type === ChannelType.DM) return;
     if (message.author.bot) return;
     client.db.run(
-      `INSERT OR IGNORE INTO Users VALUES (${message.author.id},0)`
+      `INSERT OR IGNORE INTO Users VALUES (${message.author.id},0,0)`
     );
     if (!message.content.startsWith(process.env.PREFIX!)) return;
     const role = message.member?.roles.cache.some((r) =>
